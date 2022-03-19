@@ -1,0 +1,16 @@
+[options]
+mode prove
+
+[engines]
+smtbmc
+
+[script]
+read -formal wrapper.v qarma_control.v qarma_64.v
+prep -top wrapped_qarma
+
+[files]
+wrapper.v
+properties.v
+qarma_control.v
+qarma/qarma_64.v
+
