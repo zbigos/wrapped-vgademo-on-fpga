@@ -3,7 +3,7 @@
 project: 
   title: "vga_demo"
   description: "quick demo displaying three floating blobs"
-  picture: docs/empty.png
+  picture: "vgademo-on-fpga/empty.png"
   author: "Zbigniew Drozd"
   license: LICENSE
 

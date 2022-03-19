@@ -1,0 +1,3 @@
+[submodule "vgademo-on-fpga"]
+	path = vgademo-on-fpga
+	url = https://github.com/zbigos/vgademo-on-fpga
