@@ -1,0 +1,19 @@
+[options]
+mode prove
+
+[engines]
+smtbmc
+
+[script]
+read -formal wrapper.v vga_background.v vga_core.v vga_pixel_selector.v vga_sprite.v vga_timing.v vga_top.v
+prep -top fbless_graphics_core
+
+[files]
+wrapper.v
+properties.v
+fbless-graphics-core/src/vga_background.v
+fbless-graphics-core/src/vga_core.v
+fbless-graphics-core/src/vga_pixel_selector.v
+fbless-graphics-core/src/vga_sprite.v
+fbless-graphics-core/src/vga_timing.v
+fbless-graphics-core/src/vga_top.v
