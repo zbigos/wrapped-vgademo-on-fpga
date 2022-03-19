@@ -1,0 +1,5 @@
+.history/
+runs/
+properties/
+__pycache__/
+_next_commit_message_.txt
