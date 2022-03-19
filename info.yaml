@@ -1,0 +1,48 @@
+--- 
+# information
+project: 
+  title: "memLCDdriver"
+  description: "SPI to 64-color memory LCD interface"
+  picture: docs/wrapped_memLCDdriver.gds.png
+  author: "Matt Beach"
+  license: LICENSE
+
+# test within caravel
+caravel_test:
+  recipe: "coco_test"
+  directory: "caravel_test"
+  id: 7
+  module_name: "wrapped_memLCDdriver"
+  instance_name: "wrapped_memLCDdriver"
+
+# module test
+module_test:
+  recipe: "all" 
+  directory: "memLCDdriver"
+  makefile: "Makefile"
+
+# run the wrapper formal proof
+wrapper_proof:
+  directory: "."
+  sby: "properties.sby"
+
+# openlane config, used in case I need to re-harden
+openlane:
+  config: "config.tcl"
+
+# source required for various configs and module instantiation
+source:
+    - wrapper.v
+    - memLCDdriver/src/memLCDdriver.v
+    - memLCDdriver/src/spi_s.v
+    - memLCDdriver/src/sfifo.v
+    - memLCDdriver/src/fifomem.v
+    - memLCDdriver/src/clockdiv.v
+    - memLCDdriver/src/memlcd_fsm.v
+
+# gds - check size = 300x300, nothing on metal 5, do a DRC, check 141 tristate buffers, check LVS
+gds:
+  directory: "gds"
+  gds_filename: "wrapped_memLCDdriver.gds"
+  lvs_filename: "wrapped_memLCDdriver.lvs.powered.v"
+  lef_filename: "wrapped_memLCDdriver.lef"
