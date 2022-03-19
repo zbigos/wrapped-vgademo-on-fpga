@@ -1,10 +1,10 @@
 --- 
 # information
 project: 
-  title: "title"
-  description: "description"
+  title: "vga_demo"
+  description: "quick demo displaying three floating blobs"
   picture: docs/empty.png
-  author: "Author"
+  author: "Zbigniew Drozd"
   license: LICENSE
 
 # optional interfaces you want to use: gpio, la1, la2, la3, irq, clk2, wishbone & openram
@@ -15,7 +15,7 @@ caravel_test:
   recipe: "coco_test"
   directory: "caravel_test"
   id: 1
-  module_name: "wrapped_project"
+  module_name: "vga_demo"
 
 # module test
 module_test:
@@ -35,7 +35,9 @@ openlane:
 # source required for various configs and module instantiation
 source:
     - wrapper.v
-    - other source files here
+    - src/sphere.v
+    - src/top.v
+    - src/vga_core.v
 
 # gds - check nothing on metal 5, DRC & LVS
 final:

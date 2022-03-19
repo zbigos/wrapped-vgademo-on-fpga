@@ -11,7 +11,7 @@
 //`define USE_IRQ 1
 
 // update this to the name of your module
-module wrapped_project(
+module wrapped_vga_demo(
 `ifdef USE_POWER_PINS
     inout vccd1,	// User area 1 1.8V supply
     inout vssd1,	// User area 1 digital ground
@@ -146,11 +146,22 @@ module wrapped_project(
     `endif
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
-    assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
+    assign buf_io_oeb[1: `MPRJ_IO_PADS-1] = {`MPRJ_IO_PADS{1'b0}} 
+    assign buf_io_oeb[0] = 1'b1; // io[0] is reset (input)
 
     // Instantiate your module here, 
     // connecting what you need of the above signals. 
     // Use the buffered outputs for your module's outputs.
+
+    vga_demo wrapped_vga_demo(
+        .clk(wb_clk_i),
+        .reset(io_in[0]),
+        .vga_h_sync(buf_io_out[1]),
+        .vga_v_sync(buf_io_out[2]),
+        .vga_r(buf_io_out[3:6]),
+        .vga_g(buf_io_out[7:10]),
+        .vga_b(buf_io_out[11:14])
+    );
 
 endmodule 
 `default_nettype wire

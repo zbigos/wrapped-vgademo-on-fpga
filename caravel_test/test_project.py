@@ -33,4 +33,3 @@ async def test_start(dut):
 
     # assert something
     assert(0 == 25)
-

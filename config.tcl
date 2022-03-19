@@ -2,27 +2,29 @@
 set script_dir [file dirname [file normalize [info script]]]
 
 # name of your project, should also match the name of the top module
-set ::env(DESIGN_NAME) project_name
+set ::env(DESIGN_NAME) vga_demo
 
 # add your source files here
-set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v \
-    $::env(DESIGN_DIR)/other source files.v"
+set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v  $::env(DESIGN_DIR)/src/top.v $::env(DESIGN_DIR)/src/vga_core.v $::env(DESIGN_DIR)/src/sphere.v"
+
+# this might break, point it to pin_order.cfg
+set ::env(FP_PIN_ORDER_CFG) "designs/wrapped-vgademo-on-fpga/config.tcl"
 
 # target density, change this if you can't get your design to fit
-set ::env(PL_TARGET_DENSITY) 0.4
+set ::env(PL_TARGET_DENSITY) 0.6
 
 # don't put clock buffers on the outputs, need tristates to be the final cells
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
 # set absolute size of the die to 300 x 300 um
-set ::env(DIE_AREA) "0 0 300 300"
 set ::env(FP_SIZING) absolute
+set ::env(DIE_AREA) "0 0 300 230"
 
 # define number of IO pads
 set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"
 
 # clock period is ns
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_PERIOD) "20"
 set ::env(CLOCK_PORT) "wb_clk_i"
 
 # macro needs to work inside Caravel, so can't be core and can't use metal 5
