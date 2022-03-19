@@ -1,0 +1,15 @@
+[options]
+mode prove
+
+[engines]
+smtbmc
+
+[script]
+read -formal wrapper.v pwm_fet_quad.v pwm_fet_driver_unit.v
+prep -top quad_pwm_fet_drivers
+
+[files]
+wrapper.v
+properties.v
+src/pwm_fet_quad.v
+src/pwm_fet_driver_unit.v
