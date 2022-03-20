@@ -5,12 +5,12 @@ mode prove
 smtbmc
 
 [script]
-read -formal wrapper.v src/top.v src/vga_core.v src/sphere.v
-prep -top wrapped_project
+read -formal wrapper.v top.v vga_core.v sphere.v
+prep -top wrapped_vgademo_on_fpga
 
 [files]
 wrapper.v
 properties.v
-src/top.v 
-src/vga_core.v 
-src/sphere.v
+vgademo-on-fpga/src/top.v 
+vgademo-on-fpga/src/vga_core.v 
+vgademo-on-fpga/src/sphere.v
