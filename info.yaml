@@ -1,9 +1,9 @@
 --- 
 # information
 project: 
-  title: "vgademo-on-fpga"
+  title: "vgademo_on_fpga"
   description: "quick demo displaying three floating blobs"
-  picture: "vgademo-on-fpga/empty.png"
+  picture: "vgademo-on-fpga/docs/screen.png"
   author: "Zbigniew Drozd"
   license: LICENSE
 
@@ -15,7 +15,7 @@ caravel_test:
   recipe: "coco_test"
   directory: "caravel_test"
   id: 5
-  module_name: "vgademo-on-fpga"
+  module_name: "vgademo_on_fpga"
 
 # module test
 module_test:
