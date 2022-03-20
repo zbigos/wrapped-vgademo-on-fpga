@@ -11,7 +11,7 @@
 //`define USE_IRQ 1
 
 // update this to the name of your module
-module wrapped_vga_demo(
+module wrapped_vgademo_on_fpga(
 `ifdef USE_POWER_PINS
     inout vccd1,	// User area 1 1.8V supply
     inout vssd1,	// User area 1 digital ground
@@ -146,8 +146,8 @@ module wrapped_vga_demo(
     `endif
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
-    assign buf_io_oeb[1: `MPRJ_IO_PADS-1] = {`MPRJ_IO_PADS{1'b0}} 
-    assign buf_io_oeb[0] = 1'b1; // io[0] is reset (input)
+    assign buf_io_oeb[1: `MPRJ_IO_PADS-1] = {`MPRJ_IO_PADS{1'b0}};
+    assign buf_io_oeb[10] = 1'b1; // io[0] is reset (input)
 
     // Instantiate your module here, 
     // connecting what you need of the above signals. 
@@ -155,12 +155,12 @@ module wrapped_vga_demo(
 
     vga_demo wrapped_vga_demo(
         .clk(wb_clk_i),
-        .reset(io_in[0]),
-        .vga_h_sync(buf_io_out[1]),
-        .vga_v_sync(buf_io_out[2]),
-        .vga_r(buf_io_out[3:6]),
-        .vga_g(buf_io_out[7:10]),
-        .vga_b(buf_io_out[11:14])
+        .reset(io_in[10 + 0]),
+        .vga_h_sync(buf_io_out[10 + 1]),
+        .vga_v_sync(buf_io_out[10 + 2]),
+        .vga_r(buf_io_out[10 + 3:10 + 6]),
+        .vga_g(buf_io_out[10 + 7:10 + 10]),
+        .vga_b(buf_io_out[10 + 11:10 + 14])
     );
 
 endmodule 
