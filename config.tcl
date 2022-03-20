@@ -14,7 +14,7 @@ set ::env(LEFT_MARGIN_MULT) 12
 set ::env(RIGHT_MARGIN_MULT) 12
 
 # no pins on SWE, set margins to zero.
-set ::env(BOTTOM_MARGIN_MULT) 0.1
+set ::env(BOTTOM_MARGIN_MULT) 1
 
 # Change if needed
 set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/vgademo-on-fpga/src/*.v $::env(DESIGN_DIR)/wrapper.v"
@@ -29,7 +29,7 @@ set ::env(CLOCK_PERIOD) "20.0"
 set ::env(CLOCK_PORT) "clk"
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 300 280"
+set ::env(DIE_AREA) "0 0 300 300"
 
 set filename $::env(DESIGN_DIR)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
 if { [file exists $filename] == 1} {
