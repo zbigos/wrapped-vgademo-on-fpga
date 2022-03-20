@@ -153,7 +153,7 @@ module wrapped_vgademo_on_fpga(
     // connecting what you need of the above signals. 
     // Use the buffered outputs for your module's outputs.
 
-    vga_demo wrapped_vga_demo(
+    vgademo_on_fpga wrapped_vga_demo(
         .clk(wb_clk_i),
         .reset(io_in[10 + 0]),
         .vga_h_sync(buf_io_out[10 + 1]),
