@@ -13,7 +13,7 @@ interfaces: ['la1', 'gpio']
 # test within caravel
 caravel_test:
   recipe: "caravel_vgademo_on_fpga"
-  directory: "caravel_test"
+  directory: "caravel_vgademo_on_fpga"
   id: 5
   module_name: "wrapped_vgademo_on_fpga"
 
