@@ -20,7 +20,7 @@ include $(MCW_ROOT)/verilog/dv/make/sim.makefile
 coco_test: project.hex
 	rm -rf sim_build/
 	mkdir sim_build/
-
+	echo $(USER_PROJECT_VERILOG)
     # change project_tb.v to match your testbench name
 	iverilog -Ttyp -DFUNCTIONAL -DSIM -DUSE_POWER_PINS -DUNIT_DELAY=#1 \
 	-f$(VERILOG_PATH)/includes/includes.rtl.caravel \

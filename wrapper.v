@@ -146,7 +146,7 @@ module wrapped_vgademo_on_fpga(
     `endif
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
-    assign buf_io_oeb[0: `MPRJ_IO_PADS-1] = {`MPRJ_IO_PADS{1'b0}};
+    assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
 
     // Instantiate your module here, 
     // connecting what you need of the above signals. 
@@ -154,12 +154,12 @@ module wrapped_vgademo_on_fpga(
 
     vga_demo wrapped_vga_demo(
         .clk(wb_clk_i),
-        .reset(io_in[10 + 0]),
-        .vga_h_sync(buf_io_out[10 + 1]),
-        .vga_v_sync(buf_io_out[10 + 2]),
-        .vga_r(buf_io_out[10 + 3:10 + 6]),
-        .vga_g(buf_io_out[10 + 7:10 + 10]),
-        .vga_b(buf_io_out[10 + 11:10 + 14])
+        .reset(io_in[10]),
+        .vga_h_sync(buf_io_out[11]),
+        .vga_v_sync(buf_io_out[12]),
+        .vga_r(buf_io_out[16:13]),
+        .vga_g(buf_io_out[20:17]),
+        .vga_b(buf_io_out[24:21])
     );
 
 endmodule 
