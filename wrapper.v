@@ -146,8 +146,7 @@ module wrapped_vgademo_on_fpga(
     `endif
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
-    assign buf_io_oeb[1: `MPRJ_IO_PADS-1] = {`MPRJ_IO_PADS{1'b0}};
-    assign buf_io_oeb[10] = 1'b1; // io[0] is reset (input)
+    assign buf_io_oeb[0: `MPRJ_IO_PADS-1] = {`MPRJ_IO_PADS{1'b0}};
 
     // Instantiate your module here, 
     // connecting what you need of the above signals. 
