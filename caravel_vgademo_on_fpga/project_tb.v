@@ -33,19 +33,7 @@ module project_tb;
 
     wire gpio;
     wire [37:0] mprj_io;
-
-    ///// convenience signals that match what the cocotb test modules are looking for
-    // change to suit your project. Here's how we can make some nicer named signals for inputs & outputs
-    wire output14 = mprj_io[14];
-    wire output15 = mprj_io[15];
-
-    wire input8, input9;
-
-    assign mprj_io[ 8] = input8;
-    assign mprj_io[ 9] = input9;
-    /////
     
-
     wire flash_csb;
     wire flash_clk;
     wire flash_io0;

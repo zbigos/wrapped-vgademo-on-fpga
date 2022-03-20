@@ -38,14 +38,32 @@ void main()
 	| 001    | 0     | 0     | 0      | 0      | 0     | 0       | 0       | 0     | 1     | 0       |
 
 	*/
+    // GPIO 10 is input (reset)
+	reg_mprj_io_10 =   GPIO_MODE_USER_STD_INPUT_NOPULL;
 
-    // 2 inputs
-	reg_mprj_io_8 =   GPIO_MODE_USER_STD_INPUT_NOPULL;
-	reg_mprj_io_9 =   GPIO_MODE_USER_STD_INPUT_NOPULL;
 
-    // 2 outputs
+    // 2 outputs for v and h sync
+	reg_mprj_io_11 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_12 =  GPIO_MODE_USER_STD_OUTPUT;
+
+    // 4 outputs for R
+	reg_mprj_io_13 =  GPIO_MODE_USER_STD_OUTPUT;
 	reg_mprj_io_14 =  GPIO_MODE_USER_STD_OUTPUT;
 	reg_mprj_io_15 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_16 =  GPIO_MODE_USER_STD_OUTPUT;
+
+    // 4 outputs for G
+	reg_mprj_io_17 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_18 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_19 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_20 =  GPIO_MODE_USER_STD_OUTPUT;
+
+    // 4 outputs for B
+	reg_mprj_io_21 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_22 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_23 =  GPIO_MODE_USER_STD_OUTPUT;
+	reg_mprj_io_24 =  GPIO_MODE_USER_STD_OUTPUT;
+
 
     /* Apply configuration */
     reg_mprj_xfer = 1;
@@ -53,7 +71,7 @@ void main()
 
     // activate the project by setting the 0th bit of 1st bank of LA
     reg_la0_iena = 0; // input enable off
-    reg_la0_oenb = 1; // enable logic analyser output (ignore the name, 1 is on, 0 off)
+    reg_la0_oenb = 0xffffffff; // enable logic analyser output (ignore the name, 1 is on, 0 off)
     reg_la0_data |= (1 << PROJECT_ID); // enable the project
 
     // reset design with 0bit of 2nd bank of LA
