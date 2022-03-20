@@ -14,7 +14,7 @@ interfaces: ['la1', 'gpio']
 caravel_test:
   recipe: "coco_test"
   directory: "caravel_test"
-  id: 1
+  id: 5
   module_name: "vgademo-on-fpga"
 
 # module test
