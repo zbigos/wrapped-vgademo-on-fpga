@@ -26,7 +26,7 @@ set ::env(RT_MAX_LAYER) {met4}
 
 # Fill this
 set ::env(CLOCK_PERIOD) "20.0"
-set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_PORT) "wb_clk_i"
 
 set ::env(FP_SIZING) absolute
 set ::env(DIE_AREA) "0 0 300 300"
