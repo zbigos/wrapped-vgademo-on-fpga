@@ -7,11 +7,10 @@ async def test_start(dut):
     clock = Clock(dut.clk, 25, units="ns") # 40M
     cocotb.fork(clock.start())
 
-
-    dut.power1 = 0
-    dut.power2 = 0
-    dut.power3 = 0
-    dut.power4 = 0
+    dut.power1.value = 0
+    dut.power2.value = 0
+    dut.power3.value = 0
+    dut.power4.value = 0
     dut.RSTB.value = 0
 
     await ClockCycles(dut.clk, 8)
@@ -27,10 +26,7 @@ async def test_start(dut):
 
     await ClockCycles(dut.clk, 400)
 
-    print("waiting for design to become active")
     await RisingEdge(dut.uut.mprj.wrapped_vgademo_on_fpga_5.active)
-
-    print("reset chip")
 
     dut.mprj_io[10].value = 0
     await ClockCycles(dut.clk, 8)
@@ -51,7 +47,7 @@ async def test_start(dut):
     
     last_vsync = 0
     vstartpass = 2
-
+    vframe_ok = 0    
 
     while True:
         await ClockCycles(dut.clk, 1)
@@ -79,10 +75,13 @@ async def test_start(dut):
         if last_vsync == 0 and dut.mprj_io[12].value == 1:
             if vstartpass > 0:
                 vstartpass = vstartpass - 1
-                print(vcycle_depth, vzeros_in_cycle, vones_in_cycle)
             else:
-                print(vcycle_depth, vzeros_in_cycle, vones_in_cycle)
-
+                assert vcycle_depth == 419200, f"{vcycle_depth}, {vzeros_in_cycle}, {vones_in_cycle}"
+                assert vzeros_in_cycle == 1600, f"{vcycle_depth}, {vzeros_in_cycle}, {vones_in_cycle}"
+                assert vones_in_cycle == 417600, f"{vcycle_depth}, {vzeros_in_cycle}, {vones_in_cycle}"
+                vframe_ok += 1
+                if vframe_ok == 2:
+                    return
             vcycle_depth = 0
             vzeros_in_cycle = 0
             vones_in_cycle = 0
