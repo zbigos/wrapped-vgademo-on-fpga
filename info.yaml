@@ -12,15 +12,17 @@ interfaces: ['la1', 'gpio']
 
 # test within caravel
 caravel_test:
-  recipe: "caravel_vgademo_on_fpga"
+  recipe: "coco_test"
   directory: "caravel_vgademo_on_fpga"
   id: 5
   module_name: "wrapped_vgademo_on_fpga"
 
 # module test
+# this test is internally disabled, as it draws windows
+# caravel test contains all the testing this would do.
 module_test:
-  recipe: "all" 
-  directory: "project directory"
+  recipe: "test_toplevel" 
+  directory: "vgademo-on-fpga"  
   makefile: "Makefile"
 
 # run the wrapper formal proof
